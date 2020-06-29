@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <cstdlib>
+#include <queue>
+
 using namespace std;
 
 #define SIZE 6
@@ -31,6 +33,7 @@ public:
     
     void dequeue();
     void enqueue(int x);
+    void mostrar();
     int peek();
     int size();
     bool vacia();
@@ -83,6 +86,7 @@ void cola::enqueue(int item){
     
 }
 
+
 //funcion que muestra el ultimo elemento de la cola
 int cola::peek(){
     
@@ -115,6 +119,8 @@ void hoja_presentacion(){
 void operaciones_cola(){
     int menu;
     int input;
+    int i = 0;
+    int j;
     cola q(5);
     
     cout<<"\nLa cola solo acepta 5 elementos\n";
@@ -127,6 +133,7 @@ void operaciones_cola(){
             cout<< "\nIntoduzca el elemento que desea encolar\n";
             cin>>input;
             q.enqueue(input);
+            i++;
             
         }else{
             
@@ -135,9 +142,17 @@ void operaciones_cola(){
                 q.dequeue();
             }
             
+            if (menu == 3) {
+                cout<<"\nLa Cola es: \n";
+                
+                for (j = 0; j<i; j++) {
+                    q.dequeue();
+                }
+                cout<<"\n...Se borro la cola...\n";
+            }
+            
         }
-        
-        
+            
     } while (menu!=4);
     
 }
