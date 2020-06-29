@@ -10,8 +10,48 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cstdlib>
+using namespace std;
+
+#define SIZE 6
 
 int menu;
+
+//clase para la cola
+class cola{
+    int *arr; //arreglo para almacenar la informacion
+    int capacidad; //capacidad de la cola
+    int frente;
+    int rear;
+    int count; //tamano actual de la cola
+    
+public:
+    cola(int size = SIZE); //constructor
+    ~cola(); //deconstructor
+    
+    void dequeue();
+    void enqueue(int x);
+    int peek();
+    int size();
+    bool vacia();
+    bool llena();
+    
+};
+
+cola :: cola(int size){  //constructor que inicializa la cola
+    arr = new int[SIZE];
+    capacidad = size;
+    frente = 0;
+    rear = -1;
+    count = 0;
+    
+}
+
+cola :: ~cola(){  //deconstructor que libera la memoria
+    delete arr;
+}
+
+
 
 void hoja_presentacion(){
     std::cout<< "\n\nUniversidad Tecnologica de Panama\nCurso:Estructura de Datos I\nAlumnos: Pablo Paladino, Michael ";
@@ -31,6 +71,11 @@ int main()
         
         if (menu == 1) {
             hoja_presentacion();
+        }else{
+            
+            if (menu == 3) {
+                operaciones_cola();
+            }
         }
         
     }while (menu!=4);
