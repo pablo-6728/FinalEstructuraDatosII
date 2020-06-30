@@ -132,6 +132,8 @@ void operaciones_cola(){
         if (menu == 1) {        //encolar
             cout<< "\nIntoduzca el elemento que desea encolar\n";
             cin>>input;
+            
+            cout<<"\nPuedes encolar "<<4-i<< " veces mas\n";
             q.enqueue(input);
             i++;
             
