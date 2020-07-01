@@ -78,7 +78,7 @@ void cola::enqueue(int item){
         exit(EXIT_FAILURE);
     }
     
-    cout<<"Insertando "<< item <<"\n";
+    cout<<"\nInsertando "<< item <<"\n";
     
     rear = (rear + 1)%capacidad;
     arr[rear] = item;
@@ -194,13 +194,14 @@ void operaciones_cola(){
     int menu;
     int input;
     int i = 0;
-    int j;
+    int j = 0;
+    int arreglo[5]; //arreglo en el que se va guardar la cola
     cola q(5);
     
     cout<<"\nLa cola solo acepta 5 elementos\n";
    
     do {
-        cout<<"\n\nOperaciones con Cola\n[1]Insertar en la cola\n[2]Eliminar de la cola\n[3]Mostrar la Cola (se borraran los elementos)\n[4]Volver al Menu Principal\n";
+        cout<<"\n\nOperaciones con Cola\n[1]Insertar en la cola\n[2]Eliminar de la cola\n[3]Mostrar la Cola (se borraran los elementos y se volverán a insertar)\n[4]Volver al Menu Principal\n";
         cin>>menu;
         
         if (menu == 1) {        //encolar
@@ -208,23 +209,35 @@ void operaciones_cola(){
             cin>>input;
             
             cout<<"\nPuedes encolar "<<4-i<< " veces mas\n";
-            q.enqueue(input);
+            
+            arreglo[i] = input; //se coloca el input en el arreglo
+            q.enqueue(input);   //se coloca el input en la cola
             i++;
             
         }else{
             
             if (menu == 2) {        //desencolar
                 cout<< "\nDesencolando...\n";
+                
+                arreglo[j] = 0;
                 q.dequeue();
+                j++;
             }
             
             if (menu == 3) {
+                
                 cout<<"\nLa Cola es: \n";
                 
-                for (j = 0; j<i; j++) {
+                for (j = 0; j<i; j++) { //mostrar cola
                     q.dequeue();
                 }
-                cout<<"\n...Se borro la cola...\n";
+                
+                for (j = 0; j<i; j++) {
+                    
+                    q.enqueue(arreglo[j]);  //encolar todo de una sola vez
+                }
+                
+                
             }
             
         }
