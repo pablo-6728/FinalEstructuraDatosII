@@ -31,37 +31,46 @@ class Nodo{
     
     Nodo* insertar (Nodo* val, int d){
         Nodo* nuevo = new Nodo;
-        nuevo-> dat=d;
-        nuevo->sig=val;
+        nuevo-> dat = d;
+        nuevo->sig = val;
         val = nuevo;
         return val;
     }
     
     Nodo* eliminar(Nodo* val, int d){
         Nodo* nuevo = new Nodo;
-        nuevo=val;
-        val=nuevo->sig;
-        d=nuevo->dat;
+        nuevo = val;
+        val = nuevo->sig;
+        d = nuevo->dat;
         return val;
     }
     
-void mostrareli(Nodo* val){     //mostrar elemento de la pila
+void mostrareli(Nodo* val){     //mostrar elemento eliminado
     Nodo* aux;
-    aux=val;
+    aux = val;
     cout<<aux->dat;
-    aux=aux->sig;}
+    aux = aux->sig;}
     
-void mostrar(Nodo* val){
+void mostrarPila(Nodo* val){        //mostrar elemento
     Nodo* aux;
-    aux=val;
+    aux = val;
     while(aux!=NULL){
         cout<<aux->dat<<endl;
-        aux=aux->sig;
+        aux = aux->sig;
     }
 }
+    
+void mostrarCola(Nodo* val){
+    Nodo* aux;
+    aux = val;
+    while (aux!=NULL) {
+        cout<<aux->dat<<endl;
+        aux = aux ->sig;
+    }
+    }
 };
 
-void operaciones_pila(){
+void operaciones_pila(){        //operaciones con las pilas
     int menu;
     int x = 0,z;
     int pila;
@@ -96,7 +105,7 @@ void operaciones_pila(){
         
         else if(menu == 3){
             cout<<"\n Los numeros en su pila son: \n";
-            d->mostrar(val);
+            d->mostrarPila(val);
             
         }
         
@@ -122,11 +131,16 @@ void operaciones_cola(){
         }else{
             
             if (menu == 2) {        //desencolar
-    
+                cout<<"\nIntroduzca el elemento que desea desencolar: ";
+                cin>>input;
+                val = d -> eliminar(val,input);
+                cout<<"\n Desencolando: "<<input<<" \n";
+                
             }
             
             if (menu == 3) {    //mostrar la cola
-                
+                cout<<"\nSu cola es: ";
+                d->mostrarCola(val);
             }
                 
         }
