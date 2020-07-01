@@ -113,8 +113,82 @@ bool cola::llena(){
 
 
 void hoja_presentacion(){
-    std::cout<< "\n\nUniversidad Tecnologica de Panama\nCurso:Estructura de Datos I\nAlumnos: Pablo Paladino, Michael ";
+    std::cout<< "\n\nUniversidad Tecnologica de Panama\nCurso:Estructura de Datos I\nAlumnos: Pablo Paladino, Michael Xia\n";
 }
+
+//clase para crear nodos
+class Nodo{
+    public:
+    int dat, aux;
+    Nodo* sig;
+    
+    Nodo* insertar (Nodo* val, int d){
+        Nodo* nuevo = new Nodo;
+        nuevo-> dat=d;
+        nuevo->sig=val;
+        val=nuevo;
+        return val;
+    }
+    
+    Nodo* eliminar(Nodo* val, int d){
+        Nodo* nuevo = new Nodo;
+        nuevo=val;
+        val=nuevo->sig;
+        d=nuevo->dat;
+        return val;
+    }
+    
+void mostrareli(Nodo* val){     //mostrar elemento de la pila
+    Nodo* aux;
+    aux=val;
+    cout<<aux->dat;
+    aux=aux->sig;}
+    
+void mostrar(Nodo* val){
+    Nodo* aux;
+    aux=val;
+    while(aux!=NULL){
+        cout<<aux->dat<<endl;
+        aux=aux->sig;
+    }
+}
+};
+
+void operaciones_pila(){
+    int menu;
+    int x=0,z;
+    int pila;
+Nodo* val=NULL;
+ Nodo* d;
+   
+    do {
+        cout<<"\n\nOperaciones con Pila\n[1]Insertar en la pila\n[2]Eliminar de la pila\n[3]Mostrar la Pila\n[4]Volver al Menu Principal\n";
+        cin>>menu;
+        
+        if (menu == 1) {
+            cout<< "\nIntoduzca el elemento que desea en pila\n";
+            cin>>pila;
+        val=d->insertar(val,pila);
+            
+        }else if (menu == 2) {
+                if (val==NULL) {
+        cout<<"\nLa Pila esta vacia\nCierre del Programa\n";
+        exit(EXIT_FAILURE);
+    }
+    else{
+   
+   cout<<"\nSe quito ";
+   d->mostrareli(val);
+   val=d->eliminar(val,pila);
+   
+    }
+               
+            }
+      else if(menu == 3){
+ cout<<"\n Los numeros en su pila son: \n";
+   d->mostrar(val);
+            
+        } }while (menu!=4);}
 
 void operaciones_cola(){
     int menu;
@@ -126,7 +200,7 @@ void operaciones_cola(){
     cout<<"\nLa cola solo acepta 5 elementos\n";
    
     do {
-        cout<<"\n\nOperaciones con Cola\n[1]Insertar en la cola\n[2]Eliminar de la cola\n[3]Mostrar la Pila\n[4]Volver al Menu Principal\n";
+        cout<<"\n\nOperaciones con Cola\n[1]Insertar en la cola\n[2]Eliminar de la cola\n[3]Mostrar la Cola (se borraran los elementos)\n[4]Volver al Menu Principal\n";
         cin>>menu;
         
         if (menu == 1) {        //encolar
@@ -170,6 +244,10 @@ int main()
         if (menu == 1) {
             hoja_presentacion();
         }else{
+            
+            if (menu == 2) {
+                operaciones_pila();
+            }
             
             if (menu == 3) {
                 operaciones_cola();
