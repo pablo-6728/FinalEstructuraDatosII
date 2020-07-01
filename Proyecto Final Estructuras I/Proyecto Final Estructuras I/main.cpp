@@ -15,7 +15,6 @@
 
 using namespace std;
 
-#define SIZE 6
 
 int menu;
 
@@ -60,13 +59,15 @@ void mostrarPila(Nodo* val){        //mostrar elemento
     }
 }
     
-void mostrarCola(Nodo* val){
-    Nodo* aux;
+void mostrarCola(Nodo* val){        //crea una pila al reves para mostrar la cola
+    Nodo* aux, *segundo;
     aux = val;
     while (aux!=NULL) {
-        cout<<aux->dat<<endl;
-        aux = aux ->sig;
+        segundo = insertar(segundo, aux->dat);
+        aux = aux->sig;
     }
+    mostrarPila(segundo);
+    
     }
 };
 
@@ -119,14 +120,14 @@ void operaciones_cola(){
     cout<<"\nLa cola solo acepta 5 elementos\n";
    
     do {
-        cout<<"\n\nOperaciones con Cola\n[1]Insertar en la cola\n[2]Eliminar de la cola\n[3]Mostrar la Cola (se borraran los elementos y se volverán a insertar)\n[4]Volver al Menu Principal\n";
+        cout<<"\n\nOperaciones con Cola\n[1]Insertar en la cola\n[2]Eliminar de la cola\n[3]Mostrar la Cola\n[4]Volver al Menu Principal\n";
         cin>>menu;
         
         if (menu == 1) { //encolar
             cout<<"\nIntroduzca el elemento que desea encolar: ";
             cin>>input;
             val = d -> insertar(val,input);
-            cout<<"\n Encolando: "<<input<<" \n";
+            cout<<"\nEncolando: "<<input<<" \n";
             
         }else{
             
@@ -134,12 +135,12 @@ void operaciones_cola(){
                 cout<<"\nIntroduzca el elemento que desea desencolar: ";
                 cin>>input;
                 val = d -> eliminar(val,input);
-                cout<<"\n Desencolando: "<<input<<" \n";
+                cout<<"\nDesencolando: "<<input<<" \n";
                 
             }
             
             if (menu == 3) {    //mostrar la cola
-                cout<<"\nSu cola es: ";
+                cout<<"\nSu cola es:\n";
                 d->mostrarCola(val);
             }
                 
