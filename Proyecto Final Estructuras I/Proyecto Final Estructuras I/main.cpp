@@ -58,9 +58,8 @@ class Nodo{
                 aux2 = aux2->sig;
             }
             aux1->dat = d;
-            aux1->sig = aux2->sig;
+            aux1->sig = NULL;
             aux2->sig = aux1;
-            val = aux2;
 
         }
         
@@ -125,7 +124,7 @@ void operaciones_pila(){        //operaciones con las pilas
     }while (menu!=4);}
 
 void operaciones_cola(){
-    int input;
+    int input, menu;
     Nodo* val = NULL;
     Nodo* d;
     
