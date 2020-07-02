@@ -46,7 +46,6 @@ class Nodo{
     
     Nodo* insertar_cola(Nodo* val, int d){
         Nodo* aux1 = new Nodo;
-        Nodo* aux2;
         
         if (val == NULL) {
             aux1->dat = d;
@@ -54,12 +53,13 @@ class Nodo{
             val = aux1;
         }
         else{
-            if (val != NULL) {
-                aux2->sig = NULL;
-                aux2->dat = d;
-                aux1->sig = aux2;
-                val = aux1;
+            while (val!=NULL) {
+                aux1 = val->sig;
             }
+            val->sig = aux1;
+            aux1->dat = d;
+            aux1->sig = NULL;
+            
         }
         
         return val;
