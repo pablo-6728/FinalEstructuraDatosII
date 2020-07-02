@@ -44,13 +44,34 @@ class Nodo{
         return val;
     }
     
+    Nodo* insertar_cola(Nodo* val, int d){
+        Nodo* aux1 = new Nodo;
+        Nodo* aux2;
+        
+        if (val == NULL) {
+            aux1->dat = d;
+            aux1->sig = val;
+            val = aux1;
+        }
+        else{
+            if (val != NULL) {
+                aux2->sig = NULL;
+                aux2->dat = d;
+                aux1->sig = aux2;
+                val = aux1;
+            }
+        }
+        
+        return val;
+    }
+    
 void mostrareli(Nodo* val){     //mostrar elemento eliminado
     Nodo* aux;
     aux = val;
     cout<<aux->dat;
     aux = aux->sig;}
     
-void mostrarPila(Nodo* val){        //mostrar elemento
+void mostrar_lista(Nodo* val){        //mostrar elemento
     Nodo* aux;
     aux = val;
     while(aux!=NULL){
@@ -59,21 +80,10 @@ void mostrarPila(Nodo* val){        //mostrar elemento
     }
 }
     
-void mostrarCola(Nodo* val){        //crea una pila al reves para mostrar la cola
-    Nodo* aux, *segundo;
-    aux = val;
-    while (aux!=NULL) {
-        segundo = insertar(segundo, aux->dat);
-        aux = aux->sig;
-    }
-    mostrarPila(segundo);
-    
-    }
 };
 
 void operaciones_pila(){        //operaciones con las pilas
     int menu;
-    int x = 0,z;
     int pila;
     Nodo* val=NULL;
     Nodo* d;
@@ -85,7 +95,7 @@ void operaciones_pila(){        //operaciones con las pilas
         if (menu == 1) {
             cout<< "\nIntoduzca el elemento que desea en pila\n";
             cin>>pila;
-            val=d->insertar(val,pila);
+            val = d->insertar(val,pila);
             
         }else if (menu == 2) {
             
@@ -106,7 +116,7 @@ void operaciones_pila(){        //operaciones con las pilas
         
         else if(menu == 3){
             cout<<"\n Los numeros en su pila son: \n";
-            d->mostrarPila(val);
+            d->mostrar_lista(val);
             
         }
         
@@ -114,39 +124,48 @@ void operaciones_pila(){        //operaciones con las pilas
 
 void operaciones_cola(){
     int input;
-    Nodo* val=NULL;
+    Nodo* val = NULL;
     Nodo* d;
     
-    cout<<"\nLa cola solo acepta 5 elementos\n";
-   
     do {
         cout<<"\n\nOperaciones con Cola\n[1]Insertar en la cola\n[2]Eliminar de la cola\n[3]Mostrar la Cola\n[4]Volver al Menu Principal\n";
         cin>>menu;
         
         if (menu == 1) { //encolar
-            cout<<"\nIntroduzca el elemento que desea encolar: ";
+            cout<<"Introduzca el elemento que desea agregar a la cola: \n";
             cin>>input;
-            val = d -> insertar(val,input);
-            cout<<"\nEncolando: "<<input<<" \n";
+            
+            val = d->insertar_cola(val, input);
+            
             
         }else{
             
             if (menu == 2) {        //desencolar
-                cout<<"\nIntroduzca el elemento que desea desencolar: ";
-                cin>>input;
-                val = d -> eliminar(val,input);
-                cout<<"\nDesencolando: "<<input<<" \n";
+
+                if (val==NULL) {
+                    cout<<"\nLa Pila esta vacia\nCierre del Programa\n";
+                    exit(EXIT_FAILURE);
+                }
+                           
+                else{
+                  
+                    cout<<"\nSe quito ";
+                    d->mostrareli(val);
+                    val=d->eliminar(val,input);
+                  
+                }
+                
                 
             }
             
             if (menu == 3) {    //mostrar la cola
-                cout<<"\nSu cola es:\n";
-                d->mostrarCola(val);
+                cout<<"\nLa lista es: \n";
+                d->mostrar_lista(val);
             }
                 
         }
             
-    } while (menu!=4);
+    }while (menu!=4);
     
 }
 
