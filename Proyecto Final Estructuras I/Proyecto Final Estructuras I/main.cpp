@@ -69,16 +69,27 @@ void mostrareli(Nodo* val){     //mostrar elemento eliminado
     cout<<aux->dat;
     aux = aux->sig;}
     
-void mostrar_lista(Nodo* val){        //mostrar elemento
+void mostrar_listaP(Nodo* val){        //mostrar pila
     Nodo* aux;
     aux = val;
     while(aux!=NULL){
-        cout<<aux->dat<<endl;
+        cout<<"|_"<<aux->dat<<"_|"<<endl;
+        aux = aux->sig;
+    }
+}
+void mostrar_listaC(Nodo* val){        //mostrar cola
+    Nodo* aux;
+    aux = val;
+    if(aux!=NULL){
+    cout<<"|";}
+    while(aux!=NULL){
+        cout<<aux->dat<<"|";
         aux = aux->sig;
     }
 }
     
 };
+
 
 void operaciones_pila(){        //operaciones con las pilas
     int menu;
@@ -124,7 +135,7 @@ void operaciones_pila(){        //operaciones con las pilas
         
         else if(menu == 3){
             cout<<"\n Los numeros en su pila son: \n";
-            d->mostrar_lista(val);
+            d->mostrar_listaP(val);
             
         }
         
@@ -180,7 +191,7 @@ int operaciones_cola(){
             
             if (menu == 3) {    //mostrar la cola
                 cout<<"\nLa lista es: \n";
-                d->mostrar_lista(val);
+                d->mostrar_listaC(val);
             }
                 
         }
